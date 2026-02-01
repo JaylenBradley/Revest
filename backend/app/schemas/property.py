@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional
 from datetime import date
 
 class PropertyBase(BaseModel):
-    id: int
     formatted_address: Optional[str] = Field(None, alias="formattedAddress")
     address_line1: Optional[str] = Field(None, alias="addressLine1")
     address_line2: Optional[str] = Field(None, alias="addressLine2")
@@ -18,15 +17,15 @@ class PropertyBase(BaseModel):
     property_type: Optional[str] = Field(None, alias="propertyType")
     bedrooms: Optional[int] = None
     bathrooms: Optional[int] = None
-    square_footage: Optional[int] = Field(None, alias="formattedAddress")
-    lot_size: Optional[int] = Field(None, alias="formattedAddress")
-    year_built: Optional[str] = Field(None, alias="formattedAddress")
-    assessor_id: Optional[str] = Field(None, alias="formattedAddress")
-    legal_description: Optional[str] = Field(None, alias="formattedAddress")
+    square_footage: Optional[int] = Field(None, alias="squareFootage")
+    lot_size: Optional[int] = Field(None, alias="lotSize")
+    year_built: Optional[str] = Field(None, alias="yearBuilt")
+    assessor_id: Optional[str] = Field(None, alias="assessorID")
+    legal_description: Optional[str] = Field(None, alias="legalDescription")
     subdivision: Optional[str] = None
     zoning: Optional[str] = None
-    last_sale_date: Optional[str] = Field(None, alias="formattedAddress")
-    last_sale_price: Optional[date] = Field(None, alias="formattedAddress")
+    last_sale_date: Optional[date] = Field(None, alias="lastSaleDate")
+    last_sale_price: Optional[float] = Field(None, alias="lastSalePrice")
     hoa: Optional[Dict[str, Any]] = None
     features: Optional[Dict[str, Any]] = None
     tax_assessments: Optional[Dict[str, Any]] = Field(None, alias="taxAssessments")
@@ -35,11 +34,13 @@ class PropertyBase(BaseModel):
     owner: Optional[Any] = None
     owner_occupied: Optional[bool] = Field(None, alias="ownerOccupied")
 
-class PropertyCrease(PropertyBase):
+class PropertyCreate(PropertyBase):
     ...
 
 class PropertyUpdate(BaseModel):
     ...
 
 class PropertyResponse(PropertyBase):
-    ...
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
