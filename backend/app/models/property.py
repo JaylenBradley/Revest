@@ -1,5 +1,6 @@
-from sqlalchemy import Boolean, Column, Date, Float, Integer, JSON, String, UniqueConstraint
-from app.core import Base
+from sqlalchemy import Boolean, Column, Date, DateTime, Float, Integer, JSON, String, UniqueConstraint
+from sqlalchemy.sql import func
+from ..core import Base
 
 class Property(Base):
     __tablename__ = "properties"
@@ -38,3 +39,5 @@ class Property(Base):
     history = Column(JSON, nullable=True)
     owner = Column(JSON, nullable=True)
     owner_occupied = Column(Boolean)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
