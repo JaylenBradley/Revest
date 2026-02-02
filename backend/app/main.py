@@ -14,3 +14,4 @@ app.add_middleware(
 )
 
 app.include_router(health_router, prefix="/api")
+app.include_router(property_router, prefix="/api")
