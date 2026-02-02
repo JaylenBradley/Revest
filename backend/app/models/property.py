@@ -5,7 +5,7 @@ from ..core import Base
 class Property(Base):
     __tablename__ = "properties"
     __table_args__ = (
-        UniqueConstraint("county", "assessor_id", name="unique_county_assessor")
+        UniqueConstraint("county", "assessor_id", name="unique_county_assessor"),
     )
 
     id = Column(Integer, primary_key=True, index=True)
