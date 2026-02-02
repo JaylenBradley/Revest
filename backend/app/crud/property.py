@@ -2,8 +2,8 @@ from sqlalchemy.orm import Session
 from ..models import Property
 from ..schemas import PropertyCreate
 
-def create_property(property: PropertyCreate, db: Session):
-    db_property = Property(**property.model_dump())
+def create_property(property: dict, db: Session):
+    db_property = Property(**property)
     db.add(db_property)
     db.commit()
     db.refresh(db_property)

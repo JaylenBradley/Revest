@@ -11,18 +11,18 @@ router = APIRouter(prefix="/property", tags=["Property"])
 @router.post("", response_model=PropertyResponse)
 async def create_property_handler(request: Request, data: PropertyCreate, db: Session = Depends(get_db)):
     try:
-        property = property_crud.create_property(data, db)
+        property = property_crud.create_property(data.model_dump(), db)
         return property
     except IntegrityError:
         db.rollback()
         raise HTTPException(status_code=409, detail="Property with this formatted address already exists")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Failed to create property")
 
 @router.get("", response_model=List[PropertyResponse])
 async def get_properties_handler(request: Request, skip: int = 0, limit: int = 0, db: Session = Depends(get_db)):
     try:
         properties = property_crud.get_properties(skip, limit, db)
-        if not properties:
-            raise HTTPException(status_code=404, detail="Properties not found")
         return properties
     except HTTPException:
         raise
@@ -51,7 +51,7 @@ async def update_property_handler(request: Request, id: int, data: PropertyUpdat
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail="Failed to retrieve property")
+        raise HTTPException(status_code=500, detail="Failed to update property")
 
 @router.delete("/{id}", status_code=204)
 async def delete_property_handler(request: Request, id: int, db: Session = Depends(get_db)):
