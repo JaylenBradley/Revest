@@ -9,7 +9,7 @@ def create_property(property: PropertyCreate, db: Session):
     db.refresh(db_property)
     return db_property
 
-def get_properties(skip, limit, db: Session):
+def get_properties(skip: int, limit: int, db: Session):
     return db.query(Property).offset(skip).limit(limit).all()
 
 def get_property(id: int, db: Session):
@@ -31,7 +31,7 @@ def update_property(id: int, property_data: dict, db: Session):
 def delete_property(id: int, db: Session):
     db_property = get_property(id, db)
     if not db_property:
-        return True
+        return False
 
     db.delete(db_property)
     db.commit()
