@@ -34,11 +34,14 @@ class PropertyBase(BaseModel):
     owner: Optional[Any] = None
     owner_occupied: Optional[bool] = Field(None, alias="ownerOccupied")
 
+
 class PropertyCreate(PropertyBase):
     ...
 
-class PropertyUpdate(BaseModel):
+
+class PropertyUpdate(PropertyBase):
     ...
+
 
 class PropertyResponse(PropertyBase):
     id: int
