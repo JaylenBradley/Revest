@@ -20,6 +20,7 @@ response = requests.get(
 
 db = next(get_db())
 successful = 0
+errors = []
 
 for property in response.json():
     try:
@@ -27,8 +28,10 @@ for property in response.json():
         create_property(pydantic_property.model_dump(), db)
         successful += 1
     except Exception as e:
+        errors.append(e)
         print(f"Failed to create property {e}")
     finally:
         db.close()
 
 print(f"Number of properties successfully ingested: {successful}")
+print(errors)

@@ -16,7 +16,7 @@ class PropertyBase(BaseModel):
     longitude: Optional[float] = None
     property_type: Optional[str] = Field(None, alias="propertyType")
     bedrooms: Optional[int] = None
-    bathrooms: Optional[int] = None
+    bathrooms: Optional[float] = None
     square_footage: Optional[int] = Field(None, alias="squareFootage")
     lot_size: Optional[int] = Field(None, alias="lotSize")
     year_built: Optional[int] = Field(None, alias="yearBuilt")

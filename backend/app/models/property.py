@@ -22,7 +22,7 @@ class Property(Base):
     longitude = Column(Float)
     property_type = Column(String, index=True)
     bedrooms = Column(Integer)
-    bathrooms = Column(Integer)
+    bathrooms = Column(Float)
     square_footage = Column(Integer)
     lot_size = Column(Integer)
     year_built = Column(Integer)
