@@ -25,7 +25,7 @@ class Property(Base):
     bathrooms = Column(Integer)
     square_footage = Column(Integer)
     lot_size = Column(Integer)
-    year_built = Column(String)
+    year_built = Column(Integer)
     assessor_id = Column(String, index=True)
     legal_description = Column(String)
     subdivision = Column(String)

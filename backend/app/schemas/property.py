@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 from datetime import date
 
 class PropertyBase(BaseModel):
@@ -19,7 +19,7 @@ class PropertyBase(BaseModel):
     bathrooms: Optional[int] = None
     square_footage: Optional[int] = Field(None, alias="squareFootage")
     lot_size: Optional[int] = Field(None, alias="lotSize")
-    year_built: Optional[str] = Field(None, alias="yearBuilt")
+    year_built: Optional[int] = Field(None, alias="yearBuilt")
     assessor_id: Optional[str] = Field(None, alias="assessorID")
     legal_description: Optional[str] = Field(None, alias="legalDescription")
     subdivision: Optional[str] = None
