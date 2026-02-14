@@ -34,4 +34,4 @@ for property in response.json():
         db.close()
 
 print(f"Number of properties successfully ingested: {successful}")
-print(errors)
+print(f"Errors: {errors}" if errors else "No errors occurred")
